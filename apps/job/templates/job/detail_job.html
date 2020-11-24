@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Job Detail
+{% endblock %}
+
+{% block content %}
+    {% for job in job %}
+        {{job.long_description}}
+    {% endfor %}
+{% endblock %}
