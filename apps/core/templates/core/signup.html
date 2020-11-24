@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Singup
+{% endblock %}
+
+
+
+{% block content %}
+   
+    <form class="my-5" method="POST" action=".">
+        <div class="form-group">
+            {% csrf_token %}
+            {{ form.as_p}}
+
+            <hr/>
+            <label for="">Account Type</label>
+            <select class="custom-select" name="account_type">
+                <option value="jobseer" selected>Job Seeker</option>
+                <option value="employer">Employer</option>
+              </select>
+        </div>
+        <button class="btn btn-primary" type='submit'>Submit</button>
+    </form>
+{% endblock %}
