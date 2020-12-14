@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path,include 
 from apps.core import views as v
 from apps.job import views as vv
-from apps.userprofile.views import dashboard
 from django.contrib.auth import views
 
 urlpatterns = [
@@ -29,7 +28,7 @@ urlpatterns = [
     path('login/', views.LoginView.as_view(template_name='core/login.html'), name='login'), 
     path('jobs/<int:job_id>/', vv.detail_job, name='detail_job'), 
     path('dashboard/',include('apps.userprofile.urls')), 
-    path('jobs/add/', vv.add_job, name='add_job')
+    # path('jobs/add/', vv.add_job, name='add_job')
 ]
 
 

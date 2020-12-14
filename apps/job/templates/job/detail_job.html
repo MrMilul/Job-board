@@ -6,6 +6,22 @@
 
 {% block content %}
     {% for job in job %}
-        {{job.long_description}}
+        <div class="container pt-2">
+            <div class="card">
+                <div class="card-header text-center">
+                {{job.title.upper}}
+                </div>
+            <div class="card-body">
+                <h2 class="card-title">{{job.short_description}}</h2>
+                <p class="card-text">{{job.long_description}}</p>
+                <h5>Created By <span class="badge badge-secondary">{{job.created_by}}</span></h5>
+                 <h5>Created At <span class="badge badge-secondary">{{job.created_at}}</span></h5>
+            </div>
+                <div class="card-footer text-right">
+                <a href="#" class="btn btn-primary">Apply</a>
+                 <a href="#" class="btn btn-info">Save</a>
+                </div>
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}

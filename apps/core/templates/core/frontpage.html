@@ -7,15 +7,16 @@
 {% block content %}
     {% for job in jobs %}
     <div class="container-fluid">
-    <div class="card my-3">
+    <div class="card my-3 " id="job">
       <div class="card-header text-center">
-        {{job.title}}
+        {{job.title.upper}}
       </div>
       <div class="card-body text-center">
         <h5 class="card-title">{{job.short_description}}</h5>
         <a href="{% url 'detail_job' job.id %}" class="btn btn-primary">More Detail</a>
       </div>
     </div>
-  </div>   
+  </div>
+
     {% endfor %}
 {% endblock %}

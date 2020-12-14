@@ -1,0 +1,7 @@
+.container-fluid{
+    width:25%;
+    float:left;
+}
+.card-body{
+    height:200px;
+}

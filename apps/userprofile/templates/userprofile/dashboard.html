@@ -4,13 +4,96 @@
     Dashboard
 {% endblock %}
 
-
+{% load crispy_forms_tags %}
 {% block content %}
     {% if userprofile.is_employeer %}
         {% for job in request.user.jobs.all %}
-            <div> {{job.title}}</div>
+        <p>
+            <h2 class="text-center">Hello, {{userprofile.user}}<h2>
+        <button class="btn btn-dark my-3" type="button"
+        data-toggle="collapse" data-target="#collapseExample"
+        aria-expanded="false" aria-controls="collapseExample">
+        Add New Job +
+        </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <form method="POST" class="d-inline">
+                {% csrf_token %}
+
+                <div>
+                    {{form.title| as_crispy_field}}
+                </div>
+
+                <div>
+                    {{form.short_description| as_crispy_field}}
+                </div>
+                <div>
+                    {{form.long_description| as_crispy_field}}
+                </div>
+
+                 <button type="submit" class="btn btn-success btn-block">Submit</button>
+
+            </form>
+        </div>
+        <hr>
+            <div class="container">
+                <div class="card my-4" id="job">
+                    <div class="card-header text-center">
+                    {{job.title.upper}}
+                    </div>
+                    <div class="card-body text-center overflow-auto">
+                        <h5 class="card-title">{{job.short_description}}</h5>
+                        <p class="card-title">{{job.long_description}}</p>
+                        <a href="{% url 'update' job.id %}" class="btn btn-warning">Edit</a>
+                        <button class="btn btn-danger my-3" type="button"
+                        data-toggle="collapse" data-target="#example{{job.id}}"
+                        aria-expanded="false" aria-controls="example{{job.id}}">
+                        Delete
+                        </button>
+                        <div class="text-right my-4 px-4">
+                            <div class="collapse my-3" id="example{{job.id}}">
+                                <form method="POST" action="{% url 'delete' job.id %}"
+                                      class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger">Confirm</button>
+                                </form>
+                                <button class="btn btn-outline-success"
+                                data-toggle="collapse" data-target="#example{{job.id}}"
+                                aria-expanded="false" aria-controls="example{{job.id}}"
+                                >Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% empty %}
-            <p>You don't have any job yet....</p>
+            <div class="jumbotron mt-4">
+                <h1 class="display-4">Welcome {{userprofile.user}}</h1>
+                <p class="lead">This is a job web application  created by MrMilul</p>
+                <hr class="my-4">
+                <a class="btn btn-dark btn-lg" data-toggle="collapse" data-target="#nothing"
+                aria-expanded="false" aria-controls="nothing" role="button">Add A Job +</a>
+            </div>
+            <div class="collapse" id="nothing">
+                <form method="POST" class="d-inline">
+
+                    {% csrf_token %}
+
+                    <div>
+                        {{form.title| as_crispy_field}}
+                    </div>
+
+                    <div>
+                        {{form.short_description| as_crispy_field}}
+                    </div>
+                    <div>
+                        {{form.long_description| as_crispy_field}}
+                    </div>
+
+                     <button type="submit" class="btn btn-success btn-block">Submit</button>
+
+                </form>
+            </div>
         {% endfor %}
     {% else %}
         It is job Seeker

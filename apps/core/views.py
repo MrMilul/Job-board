@@ -5,7 +5,7 @@ from apps.job.models import Job
 from apps.userprofile.models import Userprofile
 
 def frontpage(request):
-    jobs = Job.objects.all() 
+    jobs = Job.objects.order_by('-created_at') 
     context = {
         'jobs' : jobs
     }
