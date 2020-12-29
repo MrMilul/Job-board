@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+
+{% block title %}
+    Add Job
+{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+
+    <h5 class="my-3">You are applying for {{job.title}} which created by {{job.created_by}}</h5>
+    <form method="POST" action='.'>
+    {% csrf_token %}
+
+    {% if form.errors %}
+        {% for error in errors %}
+        <div class="alert alert-danger" role="alert">
+           {{ error  }}
+          </div>
+        {% endfor %}
+    {% endif %}
+
+
+    <div class="form-group">
+        <label for="id_Content">Content</label>
+        <textarea class="form-control" name="content" id="id_Content" ></textarea>
+    </div>
+    <div class="form-group">
+        <label for="id_experience">Experience</label>
+        <textarea class="form-control" name="experience" id="id_experience" ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+    {% else %}
+        <h1>You have to login first</h1>
+    {% endif %}
+{% endblock %}

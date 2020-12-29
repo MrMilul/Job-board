@@ -9,7 +9,7 @@
     {% if userprofile.is_employeer %}
         {% for job in request.user.jobs.all %}
         <p>
-            <h2 class="text-center">Hello, {{userprofile.user}}<h2>
+            <h2 class="text-center">Hello, {{userprofile.user}}</h2>
         <button class="btn btn-dark my-3" type="button"
         data-toggle="collapse" data-target="#collapseExample"
         aria-expanded="false" aria-controls="collapseExample">
@@ -96,6 +96,12 @@
             </div>
         {% endfor %}
     {% else %}
-        It is job Seeker
+       <h4 class="mt-3">Dear {{request.user}} your applications are as follows:</h4>
+        {% for application in request.user.application.all %}
+            <p>{{application.job.title}}</p>
+            {{application.content}}
+        {% empty %}
+            <h5>You have not applied for any job yet...</h5>
+        {% endfor %}
     {% endif %}
 {% endblock %}

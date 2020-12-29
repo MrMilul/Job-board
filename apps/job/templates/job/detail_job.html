@@ -18,7 +18,7 @@
                  <h5>Created At <span class="badge badge-secondary">{{job.created_at}}</span></h5>
             </div>
                 <div class="card-footer text-right">
-                <a href="#" class="btn btn-primary">Apply</a>
+                <a href="{% url 'apply_for_job' job.id %}" class="btn btn-primary">Apply</a>
                  <a href="#" class="btn btn-info">Save</a>
                 </div>
             </div>

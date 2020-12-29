@@ -21,9 +21,10 @@ def apply_for_job(request, id):
             application.job = job
             application.created_by = request.user
             application.save()
+            return redirect('dashboard')
     else:
         form = ApplicationForm()
-        return render(request, 'job/apply_for_job.html', {'form':form})
+        return render(request, 'job/apply_for_job.html', {'form': form, 'job': job})
 
 
 
