@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from apps.job.forms import AddJobForm
 from apps.job.models import Job, Application
@@ -50,3 +50,8 @@ def delete_job(request, id):
         up = Job.objects.get(pk=id)
         up.delete()
         return redirect('dashboard')
+
+@login_required
+def view_dashboard_job(request, id):
+    job = get_object_or_404(Job, pk=id, created_by=request.user)
+    return render(request, 'userprofile/view_dashboard_job.html', {'job': job})

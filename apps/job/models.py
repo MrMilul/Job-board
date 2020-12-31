@@ -21,3 +21,7 @@ class Application(models.Model):
     experience = models.TextField()
     created_by = models.ForeignKey(User, related_name='application', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    applicant_image = models.ImageField(upload_to= 'profile_image', null=True, blank=True)
+
+    def __str__(self):
+        return self.created_by.username

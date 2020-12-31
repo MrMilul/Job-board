@@ -9,3 +9,5 @@ class Userprofile(models.Model):
 
 
 User.userprofile = property(lambda u:Userprofile.objects.get_or_create(user=u)[0])
+
+

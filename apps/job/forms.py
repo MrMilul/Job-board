@@ -12,5 +12,5 @@ class AddJobForm(forms.ModelForm):
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
-        fields = ['content', 'experience']
+        fields = ['content', 'experience', 'applicant_image']
 
